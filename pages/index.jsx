@@ -4,10 +4,49 @@ import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
 import Banner from "@/components/Banner";
 import { Navbar } from "@/components/nav/Navbar";
+import Card from "@/components/card/Card";
+import { SectionCards } from "@/components/card/SectionCards";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const disneyVideos = [
+    {
+      imgUrl: "/static/clifford.webp",
+      size: "large",
+      id: 0,
+    },
+    {
+      imgUrl: "/static/clifford.webp",
+      size: "large",
+      id: 1,
+    },
+    {
+      imgUrl: "/static/clifford.webp",
+      size: "large",
+      id: 2,
+    },
+    {
+      imgUrl: "/static/clifford.webp",
+      size: "large",
+      id: 3,
+    },
+    {
+      imgUrl: "/static/clifford.webp",
+      size: "large",
+      id: 4,
+    },
+    {
+      imgUrl: "/static/clifford.webp",
+      size: "large",
+      id: 5,
+    },
+    {
+      imgUrl: "/static/clifford.webp",
+      size: "large",
+      id: 6,
+    },
+  ];
   return (
     <div className={styles.container}>
       <Head>
@@ -22,9 +61,10 @@ export default function Home() {
         subtitle="a very cute movie"
         imgUrl="/static/clifford.webp"
       />
-      {/* <NavBar/> */}
-      {/* <Banner/> */}
-      {/* <Card/> */}
+      <div className={styles.sectionWrapper}>
+        <SectionCards title="John Wick" videos={disneyVideos} size="large" />
+        <SectionCards title="John Wick" videos={disneyVideos} size="medium" />
+      </div>
     </div>
   );
 }

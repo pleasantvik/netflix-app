@@ -26,7 +26,7 @@ export const Navbar = ({ username }) => {
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-        <a href="/" className={styles.logoLink}>
+        <Link href="/" className={styles.logoLink}>
           <div className={styles.logoWrapper}>
             <Image
               src={"/static/netflix.svg"}
@@ -35,7 +35,7 @@ export const Navbar = ({ username }) => {
               alt="Netflix Logo"
             />
           </div>
-        </a>
+        </Link>
 
         <ul className={styles.navItems}>
           <li className={styles.navItem} onClick={handleOnClickHome}>
