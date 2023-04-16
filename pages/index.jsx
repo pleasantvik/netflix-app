@@ -6,47 +6,12 @@ import Banner from "@/components/Banner";
 import { Navbar } from "@/components/nav/Navbar";
 import Card from "@/components/card/Card";
 import { SectionCards } from "@/components/card/SectionCards";
+import { getVidoes } from "@/lib/videos";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
-  const disneyVideos = [
-    {
-      imgUrl: "/static/clifford.webp",
-      size: "large",
-      id: 0,
-    },
-    {
-      imgUrl: "/static/clifford.webp",
-      size: "large",
-      id: 1,
-    },
-    {
-      imgUrl: "/static/clifford.webp",
-      size: "large",
-      id: 2,
-    },
-    {
-      imgUrl: "/static/clifford.webp",
-      size: "large",
-      id: 3,
-    },
-    {
-      imgUrl: "/static/clifford.webp",
-      size: "large",
-      id: 4,
-    },
-    {
-      imgUrl: "/static/clifford.webp",
-      size: "large",
-      id: 5,
-    },
-    {
-      imgUrl: "/static/clifford.webp",
-      size: "large",
-      id: 6,
-    },
-  ];
+export default function Home({ disneyVideos }) {
+  console.log(disneyVideos, "disney");
   return (
     <div className={styles.container}>
       <Head>
@@ -67,4 +32,12 @@ export default function Home() {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const disneyVideos = getVidoes();
+
+  return {
+    props: { disneyVideos },
+  };
 }
