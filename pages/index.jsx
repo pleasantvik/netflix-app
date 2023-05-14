@@ -6,11 +6,16 @@ import Banner from "@/components/Banner";
 import { Navbar } from "@/components/nav/Navbar";
 import Card from "@/components/card/Card";
 import { SectionCards } from "@/components/card/SectionCards";
-import { getVidoes } from "@/lib/videos";
+import { getPopularVideos, getVidoes } from "@/lib/videos";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home({ disneyVideos }) {
+export default function Home({
+  disneyVideos,
+  productivityVideos,
+  travelVideos,
+  popularVideos,
+}) {
   console.log(disneyVideos, "disney");
   return (
     <div className={styles.container}>
@@ -20,24 +25,37 @@ export default function Home({ disneyVideos }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar username="adedayo@test.com" />
-      <Banner
-        title="Clifford the red dog"
-        subtitle="a very cute movie"
-        imgUrl="/static/clifford.webp"
-      />
-      <div className={styles.sectionWrapper}>
-        <SectionCards title="John Wick" videos={disneyVideos} size="large" />
-        <SectionCards title="John Wick" videos={disneyVideos} size="medium" />
-      </div>
+      <main className={styles.main}>
+        <Navbar username="adedayo@test.com" />
+        <Banner
+          title="Clifford the red dog"
+          subtitle="a very cute movie"
+          imgUrl="/static/clifford.webp"
+        />
+        <div className={styles.sectionWrapper}>
+          <SectionCards title="Disney" videos={disneyVideos} size="large" />
+          <SectionCards title="Travel" videos={travelVideos} size="small" />
+          <SectionCards
+            title="Productivity"
+            videos={productivityVideos}
+            size="medium"
+          />
+          <SectionCards title="Popular" videos={popularVideos} size="small" />
+        </div>
+      </main>
     </div>
   );
 }
 
 export async function getServerSideProps() {
-  const disneyVideos = await getVidoes();
+  const disneyVideos = await getVidoes("disney trailer");
+  const productivityVideos = await getVidoes("productivity");
+  const travelVideos = await getVidoes("travel");
+  const popularVideos = await getPopularVideos();
+
+  console.log({ popularVideos });
 
   return {
-    props: { disneyVideos },
+    props: { disneyVideos, productivityVideos, travelVideos, popularVideos },
   };
 }
